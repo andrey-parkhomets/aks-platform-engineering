@@ -8,13 +8,13 @@ variable "github_token" {
   description = "Specifies the GitHub token for the GitHub repository."
   type        = string
   default     = ""
-  
+
 }
 
 variable "location" {
   description = "Specifies the the location for the Azure resources."
   type        = string
-  default     = "eastus2"
+  default     = "polandcentral"
 }
 
 variable "agents_size" {
@@ -29,7 +29,7 @@ variable "kubernetes_version" {
   default     = null
 }
 
-variable "green_field_application_gateway_for_ingress"{ 
+variable "green_field_application_gateway_for_ingress" {
   description = "Specifies the Application Gateway for Ingress Controller"
   type        = any
   default     = null
@@ -51,21 +51,21 @@ variable "addons" {
   description = "Specifies the Kubernetes addons to install on the hub cluster."
   type        = any
   default = {
-    enable_argocd                            = true # installs argocd
+    enable_argocd = true # installs argocd
   }
 }
 
 variable "addons_versions" {
   description = "Specifies the Kubernetes addons to install on the hub cluster."
-  type        = list (object({
-    argocd_chart_version = string
+  type = list(object({
+    argocd_chart_version        = string
     argo_rollouts_chart_version = string
-    kargo_chart_version = string
+    kargo_chart_version         = string
   }))
   default = [{
-    argocd_chart_version                     = "7.8.25" # https://github.com/argoproj/argo-helm/blob/main/charts/argo-cd/Chart.yaml
-    argo_rollouts_chart_version              = "2.39.5" # https://github.com/argoproj/argo-helm/blob/main/charts/argo-rollouts/Chart.yaml
-    kargo_chart_version                      = "1.4.1" # https://github.com/akuity/kargo/releases
+    argocd_chart_version        = "7.8.25" # https://github.com/argoproj/argo-helm/blob/main/charts/argo-cd/Chart.yaml
+    argo_rollouts_chart_version = "2.39.5" # https://github.com/argoproj/argo-helm/blob/main/charts/argo-rollouts/Chart.yaml
+    kargo_chart_version         = "1.4.1"  # https://github.com/akuity/kargo/releases
   }]
 }
 
